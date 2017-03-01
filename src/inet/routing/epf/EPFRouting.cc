@@ -230,7 +230,7 @@ void EPFRouting::handleMessage(cMessage *msg)
                     handleRREPACK(check_and_cast<EPFRREPACK *>(ctrlPacket), sourceAddr);
                     break;
 
-                case ContactInfo:
+                case ContactInfoMsg:
                     handleCONTACTINFOMSG(check_and_cast<CONTACTINFOMSG *>(ctrlPacket));
                     break;
                 case Enquire:
