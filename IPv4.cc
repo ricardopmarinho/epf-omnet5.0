@@ -73,9 +73,9 @@ void IPv4::initialize(int stage)
         }*/
 
 
-        /*cModule* module = getParentModule()->getParentModule()->getSubmodule("trickle");
+        cModule* module = getParentModule()->getParentModule()->getSubmodule("trickle");
         trickle = check_and_cast<Trickletimer*>(module);
-*/
+
 
         ift = getModuleFromPar<IInterfaceTable>(par("interfaceTableModule"), this);
         rt = getModuleFromPar<IIPv4RoutingTable>(par("routingTableModule"), this);
@@ -149,17 +149,17 @@ void IPv4::handleMessage(cMessage *msg)
     else{
         /**
          * trickle beggining*/
-        /*if(msg->isSelfMessage() && dynamic_cast<IPv4Datagram*>(msg)){
+        if(msg->isSelfMessage() && dynamic_cast<IPv4Datagram*>(msg)){
             EV << "Self and ipv4 datagram message" << endl;
             //IPv4Datagram* ipv4msg = check_and_cast<IPv4Datagram*>(msg);
-           /* IPv4ControlInfo *controlInfo = ipv4msg->set();
+            IPv4ControlInfo *controlInfo = ipv4msg->set();
             sendPacketToNIC(PK(msg),const_cast<const InterfaceEntry *>(ift->getInterfaceById(controlInfo->getInterfaceId())));*/
-            /*sendSelfMsg(PK(msg));
-        }else{*/
+            sendSelfMsg(PK(msg));
+        }else{
         /**
          * trickle ending*/
             QueueBase::handleMessage(msg);
-        //}
+        }
     }
 }
 
@@ -945,7 +945,7 @@ void IPv4::sendPacketToNIC(cPacket *packet, const InterfaceEntry *ie)
 
     /**
      * trickle beginning*/
-    /*EV_INFO << "Sending " << packet << " to output interface = " << ie->getName() << ".\n";
+    EV_INFO << "Sending " << packet << " to output interface = " << ie->getName() << ".\n";
     if(dynamic_cast<IPv4Datagram*> (packet) && strcmp(packet->getName(),"CONTACTINFO") && strcmp(packet->getName(),"DataMessage")){
        IPv4Datagram* ipv4msg = check_and_cast<IPv4Datagram*>(packet);
        if(trickle->getExpectedId() == ipv4msg->getIdentification()){
@@ -960,12 +960,12 @@ void IPv4::sendPacketToNIC(cPacket *packet, const InterfaceEntry *ie)
        }
        if(trickle->getLastTime().dbl()==0){
           /*first message: begin interval counting*/
-         /* trickle->setLastTime(simTime());
+          trickle->setLastTime(simTime());
           trickle->resetCounter();
           trickle->updateCurrInterval();
       }else if(simTime().dbl() == trickle->getLastTime().dbl()+trickle->getIntervalSize()){
           /*interval beginning*/
-         /*trickle->setLastTime(simTime());
+         trickle->setLastTime(simTime());
           trickle->resetCounter();
           trickle->doubleIntervalSize();
           trickle->updateCurrInterval();
@@ -976,7 +976,7 @@ void IPv4::sendPacketToNIC(cPacket *packet, const InterfaceEntry *ie)
                ipv4msg->setGateIndex(queueOutGateBaseId + ie->getNetworkLayerGateIndex());
                scheduleAt(simTime()+delay,ipv4msg);
            }
-   }else*/
+   }else
        /**
         * trickle ending*/
         send(packet, queueOutGateBaseId + ie->getNetworkLayerGateIndex());
