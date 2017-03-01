@@ -1,0 +1,55 @@
+version 2
+run SimpleRREQ-12-20161206-19:37:53-1960
+attr configname SimpleRREQ
+attr datetime 20161206-19:37:53
+attr experiment SimpleRREQ
+attr inifile omnetpp.ini
+attr iterationvars "$0=\"./movements/RandomWaypoint—0-100-0.5.movements\""
+attr iterationvars2 "$0=\"./movements/RandomWaypoint—0-100-0.5.movements\", $repetition=12"
+attr measurement "$0=\"./movements/RandomWaypoint—0-100-0.5.movements\""
+attr network SimpleRREQ
+attr processid 1960
+attr repetition 12
+attr replication #12
+attr resultdir results
+attr runnumber 12
+attr seedset 12
+param **.hasStatus true
+param **.host[*].mobility.nodeId -1
+param **.host[*].mobility.traceFile "${\"./movements/RandomWaypoint—0-100-0.5.movements\"}"
+param **.host[*].mobilityType "\"BonnMotionMobility\""
+param **.host[*].numPingApps 1
+param **.host[*].pingApp[0].destAddr "\"host[0](ipv4)\""
+param **.host[*].pingApp[0].printPing true
+param **.host[*].pingApp[0].startTime uniform(1s,5s)
+param **.mobility.constraintAreaMaxX 600m
+param **.mobility.constraintAreaMaxY 600m
+param **.mobility.constraintAreaMaxZ 0m
+param **.mobility.constraintAreaMinX 0m
+param **.mobility.constraintAreaMinY 0m
+param **.mobility.constraintAreaMinZ 0m
+param **.trickle.Imax 20s
+param **.trickle.Imin 10s
+param **.trickle.MaxMessages 5
+param **.wlan[*].bitrate 2Mbps
+param **.wlan[*].mac.address "\"auto\""
+param **.wlan[*].mac.cwMinData 7
+param **.wlan[*].mac.cwMinMulticast 31
+param **.wlan[*].mac.headerLength 20B
+param **.wlan[*].mac.maxQueueSize 14
+param **.wlan[*].mac.retryLimit 7
+param **.wlan[*].mac.rtsThresholdBytes 3000B
+param **.wlan[*].mgmt.frameCapacity 10
+param **.wlan[*].radio.receiver.ignoreInterference true
+param **.wlan[*].radio.transmitter.communicationRange 250m
+param **.wlan[*].radio.transmitter.detectionRange 0m
+param **.wlan[*].radio.transmitter.headerBitLength 0b
+param **.wlan[*].radio.transmitter.interferenceRange 0m
+param **.wlan[*].radioType "\"IdealRadio\""
+param **.wlan[*].typename "\"IdealWirelessNic\""
+param *.host0.numPingApps 1
+param *.host0.pingApp[0].printPing true
+param *.host0.pingApp[0].startTime uniform(1s,5s)
+param *.numHosts 3
+
+scalar SimpleRREQ 	hackForCreateResultsFolder 	0
