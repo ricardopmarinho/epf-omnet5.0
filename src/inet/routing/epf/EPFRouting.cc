@@ -1935,6 +1935,12 @@ void EPFRouting::handleEnquireMessage(EnquireMessage* enqMsg){
                         resp->setDestReached(false);
                         resp->setOkToSend(false);
                     }
+                }else{
+                    EV << "Not ok to send: my contact is lower then threshold!" << endl;
+                    respNOkSent++;
+                    emit(respNOkSentSignal,respNOkSent);
+                    resp->setDestReached(false);
+                    resp->setOkToSend(false);
                 }
             }else{
                 EV << "Not ok to send: my contact is lower then threshold!" << endl;
